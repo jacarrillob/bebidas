@@ -12,7 +12,7 @@ const bebidas = useBebidas();
   <div v-else class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 my-10 gap-10">
     <RecetaComponent
       v-for="receta in bebidas.recetas"
-      :key="receta?.idDrink"
+      :key="receta.idDrink"
       :receta="receta"
     />
   </div>

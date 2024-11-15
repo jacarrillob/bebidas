@@ -7,14 +7,14 @@ import APIService from "@/services/APIService";
 export const useBebidas = defineStore('bebidas', () => {
 
     const modal = useModal();
-    const categorias = ref([])
+    const categorias: any = ref([])
     const busqueda = reactive({
         name: '',
         categoria: ''
     })
 
-    const recetas = ref([]);
-    const receta = ref({})
+    const recetas: any = ref([]);
+    const receta: any = ref({})
 
     async function obtenerRecetas () {
         const {data: { drinks }} = await APIService.buscarRecetas(busqueda)
