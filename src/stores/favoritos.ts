@@ -7,7 +7,7 @@ import { useNotificacionStore } from "./notificaciones";
 export const useFavoritosStore = defineStore('favoritos', () => {
     
     const bebidas = useBebidas()
-    const favoritos = ref([])
+    const favoritos: any = ref([])
     const modal = useModal()
     const notificacion = useNotificacionStore()
 
@@ -22,12 +22,12 @@ export const useFavoritosStore = defineStore('favoritos', () => {
     }
 
     function existeFavorito() {
-        const favoritosLocalStorage = JSON.parse(localStorage.getItem('favoritos')) ?? []
-        return favoritosLocalStorage.some(favorito => favorito.idDrink === bebidas.receta.idDrink)
+        const favoritosLocalStorage = JSON.parse(localStorage.getItem('favoritos') || '[]') ?? []
+        return favoritosLocalStorage.some((favorito: any) => favorito.idDrink === bebidas.receta.idDrink)
     }
 
     function eliminarFavorito() {
-        favoritos.value = favoritos.value.filter(favorito => favorito.idDrink !== bebidas.receta.idDrink)
+        favoritos.value = favoritos.value.filter((favorito: any) => favorito.idDrink !== bebidas.receta.idDrink)
 
         notificacion.mostrar = true
         notificacion.error = true
@@ -60,7 +60,7 @@ export const useFavoritosStore = defineStore('favoritos', () => {
 
     const noFavoritos = computed(()=> favoritos.value.length === 0)
 
-    onMounted(()=> favoritos.value = JSON.parse(localStorage.getItem('favoritos')) ?? [])
+    onMounted(()=> favoritos.value = JSON.parse(localStorage.getItem('favoritos') || '[]') ?? [])
 
 
     return {
